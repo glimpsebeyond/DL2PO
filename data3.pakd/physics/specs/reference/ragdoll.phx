@@ -1,0 +1,99 @@
+///////////////////////////////////////////////////////////////////////////////////////////////////
+// this is reference file with description of all keywords used by ragdoll physics scripts
+// this script is used also as default spec
+// physics scripts also contain base physics description (see: physics.phx for reference)
+///////////////////////////////////////////////////////////////////////////////////////////////////
+import "physics.phx"
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+sub PhysicsRagdoll()
+{
+    // if owner mesh position/rotation should be set on the basis of physics center
+    OwnerSynchronization(true);
+    
+    // if (duration_time > 0) then all non physical (non ragdoll) bones will be synchronized and blended into reference frame through given time [s] (1 sec. here)
+    // if (duration_time <= 0) such blending is disabled
+    NonPhysicalBonesRestoreDuration(1)
+    {
+        // mask of non physical bones which will be omitted in bones synchronization
+        // all elements which contain that name will be excluded from non physical bones synchronization
+        ExcludeMask("bone_detail");
+        
+        // root of non physical bones which will be omitted in bones synchronization
+        // this bone and its every descendant will be excluded from "non physical bone synchro"
+        // e.g for "head" mesh element we can exclude head and all mimic bones from non physical bones restoration system
+        ExcludePropagate("head");
+        
+        // root of non physical bone which will be hidden (scaled down) as well as every bone's descendant
+        HidePropagate("l_tendrill00");
+    }
+    
+    // warm start duration [s]
+    // after ragdoll start collision and joint limits are soften during given time
+    // 0 - warm start disabled
+    SelfCollisionWarmStartDuration(2.0);
+    ConstraintsWarmStartDuration(2.0);
+    
+    // if start velocities should be obtained from animation and applied to bodies on first frame
+    StartVelocitiesFromAnimation(true);
+
+    // when synchronizing bodies to skeleton, only body rotation may be passed to skeleton's bone matrix
+    // 0 - FirstBoneOnly           only slot 0 body/bone will be fully synchronized (position and rotation), rest of bodies will synchro rotation only 
+    // 1 - AccordingToAnimFlags    (default) position and rotation will be synchronized according to animation flags defined in mesh (eg. FMeshElement::ANIM_POS, FMeshElement::ANIM_ROT, etc.)
+    // 2 - AllBodies               position and rotation will be synchronized for all physical bones
+    BonesPositionSynchroMode(1);
+    
+    // whether animation of non-physical bones/mesh elements are allowed (e.g. used by partial ragdoll)
+    // use true if whole owner's mesh is driven by physics only
+    // use false when part of mesh is simulated by physics and the rest by animation (e.g. one arm ragdoll)
+    // default: false
+    AllowAnimationOfOtherElements(false);
+    
+    // defines script with definitions of ragdoll behaviors
+    BehaviorSet("zombie_ragdoll_behaviors.phx");
+    
+    // set bone name used by ragdoll-to-anim blending as bone which orientation will be drawn to target pose given by anim first frame
+    // this should be a "central" bone
+    AnimBlendingOrientationBoneName("pelvis");
+    
+    // allow synchronization of root mesh element with given physical bone (relative root vs given physical bone transform will be constant)
+    RootSynchro("Pelvis");
+    
+    // Add new Ragdoll Unconditioned Reflexes
+    // Ragdoll Unconditioned Reflexes - some ragdoll activities applied if certain conditions are meet
+    // for constant predefined names see: physics_def.phx
+    // i - type of effect (RurForceReflex (linear) or RurTorqueReflex (angular))
+    // s - name of bone a
+    // s - name of bone b
+    // f - multiplier of bone b reaction (force/torque is always aplied to bone a, this very same value can be applied to bone b using this multiplier)
+    // i - direction coordinate (if RurDirRandom, value will be randomized once per one ragdoll instance and simulation)
+    // v3 - force/torque direction
+    // i - steering mode: which value will be taken to obtain reflex power (linear vel, angular vel or vertical linear vel) - use RurSpeedSteering* constants
+    // f - steering value multiplier. Force/torque will be calculated using steering value multiplied by this value.
+    // f - min value of steering value - e.g. min linear speed (as average speed of whole ragdoll)
+    // f - max scaled value of steering value - e.g. max linear speed used to scaling force/torque - if speed will be grater, rur will be applied also, but with max constant value
+    // v3 - debug renderer color, if [0, 0, 0] debug rendering of this rur is disabled
+    Rur(RurForceReflex, "l_hand", "spine1", -1, RurDirWorld, [0.0, -1.0, 0.0], RurSpeedSteeringVertVel, -20, -1, -10, [0.0, 0.0, 0.0]);
+    
+    // creates simple IK synchronization for s1 bone (non physical)
+    // BoneIk(ik_bone_name, base_bone_name, local_pos_on_base_bone);
+    // x-axis of s1 bone will be aligned to "from s1 bone's pivot to point on s2 bone" direction
+    // base bone have to by physical one
+    // v3 is a point in s2 bone local coordinates
+    BoneIk("l_clavicle", "l_upperarm", [-0.11,  0.05, 0.0]);
+    
+    // defines tendon - a link between 2 joints. 
+    // Angle of parent joint (angle of one defined DOF/axis) can determine limit of tended joint
+    // s0, s1 - parent joint (defined by 2 bone names)
+    // i2 - parent joint axis (0,1,2)
+    // s3, s4 - tended joint (defined by 2 bone names)
+    // i5 - tended joint axis (0,1,2)
+    // [f6, f6] - parent joint's angle "hot" range [DEG]
+    // i7 - tended joint modified limit side (0-lo stop, 1-hi stop)
+    // [f8, f8] - tended joint's angle range [DEG]
+    // current angle of parent joint will be mapped into tended joint's limit range linearly
+    Tendon("pelvis", "l_thigh", 0, "l_thigh", "l_calf", 0, [3.0, 17.0], 0, [-3.0, 22.8]);
+}
+
+
+

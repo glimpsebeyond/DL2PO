@@ -1,0 +1,246 @@
+{
+    "version": 1,
+    "symbol_uuid": "{7a1a06d5-f86a-4263-8cf3-facdc4ca6eb4}",
+    "symbol_size": "1920.000000 1080.000000",
+    "data_context_class": "MenuDevListController",
+    "class": "gui::ISymbolRoot",
+    "uuid": "{7a1a06d5-f86a-4263-8cf3-facdc4ca6eb4}",
+    "Id": "MenuDevList",
+    "components": [
+        {
+            "class": "gui::IElementComponent",
+            "uuid": "{3fc861ba-4284-422d-a2ca-751ff73dbf37}"
+        },
+        {
+            "class": "gui::ILayoutComponent",
+            "uuid": "{fc56dfb8-72a7-48fa-8fb1-a152a0e44f47}",
+            "Height": "1080.000000",
+            "Width": "1920.000000"
+        },
+        {
+            "class": "gui::IResolutionScalerComponent",
+            "uuid": "{61184a96-265f-476e-ab5e-4582458b7a4d}"
+        },
+        {
+            "class": "gui::CScreenComponent",
+            "uuid": "{a1cc4a7c-1be3-4be6-ba73-4b6562b316e3}",
+            "DataClassName": "MenuDevListController"
+        },
+        {
+            "class": "gui::ILogicComponent",
+            "uuid": "{408e82ab-3cd7-4add-b570-e0892679f8cc}",
+            "data": [
+                {
+                    "type": "CVariablesComponentSymbolData"
+                },
+                {
+                    "type": "CActionGraphSymbolData",
+                    "uuid": "{35ad7240-e58e-4c05-947d-947f01a33800}",
+                    "hash": "",
+                    "nodes": [
+                        {
+                            "type": "CActionSetFocus",
+                            "id": 8,
+                            "meta": {
+                                "x": 2775.0,
+                                "y": 2160.0
+                            },
+                            "field_path": {
+                                "type": "GuiComponent",
+                                "element": "dev_listbox",
+                                "element_uuid": "{87d53588-30f1-48ee-8121-cb6bf376a7ea}",
+                                "component_class": "gui::IFocusComponent"
+                            }
+                        },
+                        {
+                            "type": "CActionGameDataEvent",
+                            "id": 7,
+                            "Next": 8,
+                            "meta": {
+                                "x": 2503.8857421875,
+                                "y": 2171.82421875
+                            },
+                            "field_path": {
+                                "type": "GuiComponent",
+                                "element": ".",
+                                "element_uuid": "{7a1a06d5-f86a-4263-8cf3-facdc4ca6eb4}",
+                                "component_class": "gui::CScreenComponent"
+                            },
+                            "msg_rtti": "gui::CScreenAboutToShow"
+                        },
+                        {
+                            "type": "CActionEmitGameDataEvent",
+                            "id": 6,
+                            "m_Text1": {
+                                "value": ""
+                            },
+                            "m_Text2": {
+                                "value": ""
+                            },
+                            "m_Int1": {
+                                "src_node": 5,
+                                "src_prop": "ElementIndex",
+                                "value": "0"
+                            },
+                            "m_Float1": {
+                                "value": "0.000000"
+                            },
+                            "m_Bool1": {
+                                "value": "0"
+                            },
+                            "meta": {
+                                "x": 2157.0,
+                                "y": 2532.0
+                            },
+                            "field_path": {
+                                "type": "DataContext",
+                                "class": "MenuDevListController"
+                            },
+                            "msg_rtti": "GuiGenericEvent"
+                        },
+                        {
+                            "type": "CActionOnListboxButtonPress",
+                            "id": 5,
+                            "Next": 6,
+                            "meta": {
+                                "x": 1860.0,
+                                "y": 2520.0
+                            },
+                            "field_path": {
+                                "type": "GuiComponent",
+                                "element": "dev_listbox",
+                                "element_uuid": "{87d53588-30f1-48ee-8121-cb6bf376a7ea}",
+                                "component_class": "gui::IListboxComponent"
+                            }
+                        },
+                        {
+                            "type": "CActionSetInt",
+                            "id": 4,
+                            "Value": {
+                                "value": "0"
+                            },
+                            "meta": {
+                                "x": 2073.0,
+                                "y": 2339.0
+                            },
+                            "field_path": {
+                                "type": "GuiComponent",
+                                "element": "dev_listbox",
+                                "element_uuid": "{87d53588-30f1-48ee-8121-cb6bf376a7ea}",
+                                "component_class": "gui::IListboxComponent",
+                                "field": "FocusedIndex"
+                            }
+                        },
+                        {
+                            "type": "CActionOnFieldChanged",
+                            "id": 2,
+                            "Next": 4,
+                            "meta": {
+                                "x": 1890.0,
+                                "y": 2325.0
+                            },
+                            "field_path": {
+                                "type": "DataContext",
+                                "class": "MenuDevListController",
+                                "field": "m_ScreenNames"
+                            }
+                        },
+                        {
+                            "type": "CActionEmitGameDataEvent",
+                            "id": 3,
+                            "meta": {
+                                "x": 2070.0,
+                                "y": 2175.0
+                            },
+                            "field_path": {
+                                "type": "DataContext",
+                                "class": "MenuDevListController"
+                            },
+                            "msg_rtti": "gui::CBackButtonAction"
+                        },
+                        {
+                            "type": "CActionOnButtonPress",
+                            "id": 1,
+                            "Next": 3,
+                            "meta": {
+                                "x": 1890.0,
+                                "y": 2145.0
+                            },
+                            "field_path": {
+                                "type": "GuiComponent",
+                                "element": "btn_back",
+                                "element_uuid": "{87b2fb6a-19eb-47b9-9ee6-273ebb49c8bd}",
+                                "component_class": "gui::IButtonComponent"
+                            }
+                        }
+                    ]
+                }
+            ]
+        }
+    ],
+    "objects": [
+        {
+            "class": "gui::CSymbolRoot",
+            "uuid": "{87d53588-30f1-48ee-8121-cb6bf376a7ea}",
+            "Id": "dev_listbox",
+            "sub_symbol": "dev_listbox",
+            "components": [
+                {
+                    "target_component_uuid": "{49126a4d-e300-4283-90d3-53b877f979b2}",
+                    "class": "gui::ILayoutComponent",
+                    "Height": "820.000000",
+                    "Width": "800.000000",
+                    "MarginTop": "115.000000",
+                    "MarginLeft": "210.000000",
+                    "MarginAnchorX": "Center"
+                },
+                {
+                    "target_component_uuid": "{256a6b31-2aaf-4a7e-a3c6-82f06c6591d8}",
+                    "class": "gui::IListboxComponent",
+                    "FieldPath": "m_ScreenNames"
+                },
+                {
+                    "target_component_uuid": "{07176e53-273b-4635-b5dd-e866f1b69da6}",
+                    "class": "gui::IFocusComponent",
+                    "Focus": "1"
+                },
+                {
+                    "target_component_uuid": "{67c81850-090b-441b-80c7-193709e17abb}",
+                    "class": "gui::ILogicComponent",
+                    "dyn_fields": [
+                        {
+                            "name": "header",
+                            "type": "string",
+                            "value": "&MInGame_DeveloperMenuList&"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "class": "gui::CSymbolRoot",
+            "uuid": "{87b2fb6a-19eb-47b9-9ee6-273ebb49c8bd}",
+            "Id": "btn_back",
+            "sub_symbol": "dev_btn_nofocus",
+            "components": [
+                {
+                    "target_component_uuid": "{764cc4df-cd54-481e-89f4-2fa8ebf0fac5}",
+                    "class": "gui::ILayoutComponent",
+                    "MarginTop": "988.518860",
+                    "MarginLeft": "1581.006836"
+                },
+                {
+                    "target_component_uuid": "{924e5d64-66cd-4546-8f6f-a83a67013333}",
+                    "class": "gui::IButtonComponent",
+                    "UnfocusedPress": "1",
+                    "PressAction": "_ACTION_GUI_CANCEL"
+                },
+                {
+                    "target_component_uuid": "{5a80d907-20e2-4a24-a5fa-7eab207fb49a}",
+                    "class": "gui::ISimpleDataComponent",
+                    "BtnText": "%KEY(_ACTION_GUI_CANCEL) &MenuBack&"
+                }
+            ]
+        }
+    ]
+}
