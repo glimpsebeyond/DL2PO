@@ -4,3 +4,5 @@ if(ls $pakPath){
 }else{
 7z a -tzip $pakPath .\data3.pakd\*
 }
+
+cp $pakPath .
