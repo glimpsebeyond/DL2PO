@@ -77,63 +77,30 @@ sub main()
 ///////////////
 //BLUNT BEHAVIORS
 ///////////////
-/*
-    RagdollBehaviorPreset("blunt_melee_weapon_left")
-    {
-        use Defaults_MeleeWeaponBlunt();
 
-        Behaviors("Float_Quick");
-        // Behaviors("StickBlunt_TorsoHorizontal1_Left");
-        // Behaviors("StickBlunt_TorsoHorizontal2_Left");
-        // Behaviors("StickBlunt_TorsoHorizontal3_Left");
-        //Behaviors("TorsoVertical1_Right");
-        //CustomImpactDirection("AwayFromDamager");
-    }
-
-    RagdollBehaviorPreset("blunt_melee_weapon_right")
-    {
-        use Defaults_MeleeWeaponBlunt();
-
-        Behaviors("Float_Quick");
-        // Behaviors("StickBlunt_TorsoHorizontal1_Right");
-        // Behaviors("StickBlunt_TorsoHorizontal2_Right");
-        // Behaviors("StickBlunt_TorsoHorizontal3_Right");
-        //Behaviors("TorsoVertical1_Left");
-        //CustomImpactDirection("AwayFromDamager");
-    }
-*/
-
-// mod basic
-
-/*
     RagdollBehaviorPreset("blunt_melee_weapon_head_any")
     {
         use Defaults_MeleeWeaponBlunt();
 
-        Behaviors("Float_Away");
-        // Behaviors("gb_StickBlunt_Head_Any");
-        // PhysicsForceMul("1.5");
-        // Behaviors("gb_StickBlunt_Head_Any");
+        Behaviors("gb_StickBlunt_Head_Any");
+        Behaviors("gb_StickBlunt_Head_Any_Convulse");
     }
-*/
+
     RagdollBehaviorPreset("blunt_melee_weapon_torso_any")
     {
         use Defaults_MeleeWeaponBlunt();
 
-        Behaviors("Float_Away");
-        // Behaviors("gb_StickBlunt_Torso_Any");
-        // Behaviors("gb_StickBlunt_Torso_Any2");
+        Behaviors("gb_StickBlunt_Torso_Any");
+        Behaviors("gb_StickBlunt_Torso_Any_TryToGetUp");
     }
-
-/*
 
     RagdollBehaviorPreset("blunt_melee_weapon_legs_any")
     {
         use Defaults_MeleeWeaponBlunt();
 
         Behaviors("gb_StickBlunt_LegsSweep_Any");
+        Behaviors("gb_StickBlunt_LegsSweep_Any2");
     }
-*/
 
 /* mod advanced
     RagdollBehaviorPreset("blunt_melee_weapon_head_left")
@@ -141,11 +108,9 @@ sub main()
         use Defaults_MeleeWeaponBlunt();
 
         Behaviors("gb_StickBlunt_Head_Any");
-        /*
         Behaviors("StickBlunt_LegsHorizontal1_Left");
         Behaviors("StickBlunt_LegsHorizontal2_Left");
         Behaviors("StickBlunt_LegsHorizontal3_Left");
-        */
     }
 
     RagdollBehaviorPreset("blunt_melee_weapon_head_right")
@@ -153,11 +118,9 @@ sub main()
         use Defaults_MeleeWeaponBlunt();
 
         Behaviors("gb_StickBlunt_Head_Any");
-        /*
         Behaviors("StickBlunt_LegsHorizontal1_Left");
         Behaviors("StickBlunt_LegsHorizontal2_Left");
         Behaviors("StickBlunt_LegsHorizontal3_Left");
-        */
     }
     
     RagdollBehaviorPreset("blunt_melee_weapon_torso_left")
@@ -166,11 +129,9 @@ sub main()
 
         // Behaviors("Float_Away");
         Behaviors("gb_StickBlunt_Torso_Any");
-        /*
         Behaviors("StickBlunt_LegsHorizontal1_Left");
         Behaviors("StickBlunt_LegsHorizontal2_Left");
         Behaviors("StickBlunt_LegsHorizontal3_Left");
-        */
     }
     
     RagdollBehaviorPreset("blunt_melee_weapon_torso_right")
@@ -179,11 +140,9 @@ sub main()
 
         // Behaviors("Float_Away");
         Behaviors("gb_StickBlunt_Torso_Any");
-        /*
         Behaviors("StickBlunt_LegsHorizontal1_Left");
         Behaviors("StickBlunt_LegsHorizontal2_Left");
         Behaviors("StickBlunt_LegsHorizontal3_Left");
-        */
     }
     
     RagdollBehaviorPreset("blunt_melee_weapon_legs_left")
@@ -191,11 +150,9 @@ sub main()
         use Defaults_MeleeWeaponBlunt();
 
         Behaviors("gb_StickBlunt_LegsSweep_Any");
-        /*
         Behaviors("StickBlunt_LegsHorizontal1_Left");
         Behaviors("StickBlunt_LegsHorizontal2_Left");
         Behaviors("StickBlunt_LegsHorizontal3_Left");
-        */
     }
     
     RagdollBehaviorPreset("blunt_melee_weapon_legs_right")
@@ -204,14 +161,10 @@ sub main()
 
         Behaviors("gb_StickBlunt_LegsSweep_Any");
         // Behaviors("gb_StickBlunt_LegsHorizontal1_Right");
-        /*
         Behaviors("StickBlunt_LegsHorizontal1_Right");
         Behaviors("StickBlunt_LegsHorizontal2_Right");
         Behaviors("StickBlunt_LegsHorizontal3_Right");
-        */
     }
-*/ 
-/*
     RagdollBehaviorPreset("blunt_melee_weapon_heavy")
     {
         use Defaults_MeleeWeaponBlunt();
@@ -220,13 +173,9 @@ sub main()
         //Behaviors("StickBlunt_TorsoVerticalCharge");
         //CustomImpactDirection("AwayFromDamager");
     }
+
 */
-    
-
-
-
-
-
+ 
 ///////////////
 //OTHERS
 ///////////////
@@ -243,18 +192,18 @@ sub main()
 
     RagdollBehaviorPreset("light_stab")
     {
-        Behaviors("Just_Ragdoll");
+        Behaviors("Medium_Stab");
         PhysicsForceMul("0.5");
     }
 
     RagdollBehaviorPreset("medium_stab")
     {
-        Behaviors("Just_Ragdoll");
+        Behaviors("Medium_Stab");
     }
 
     RagdollBehaviorPreset("heavy_stab")
     {
-        Behaviors("Just_Ragdoll");
+        Behaviors("Heavy_Stab");
     }
 
     RagdollBehaviorPreset("parkour_kick_medium")

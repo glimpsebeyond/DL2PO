@@ -55,15 +55,11 @@ sub Datas()
     // mod basic
 
     //head
-    /*
     Data(EReactionType_Blunt, EReactionContext_MeleeWeapon, EHitSeverity_Any, EMoveSeverity_Any, ERagdollHitPart_Head, EImpactDirection_Any,     "blunt_melee_weapon_head_any@ai_ragdoll_behavior_presets.scr");
-    */
     //torso
     Data(EReactionType_Blunt, EReactionContext_MeleeWeapon, EHitSeverity_Any, EMoveSeverity_Any, ERagdollHitPart_Torso, EImpactDirection_Any,     "blunt_melee_weapon_torso_any@ai_ragdoll_behavior_presets.scr");
-/*
     //legs
     Data(EReactionType_Blunt, EReactionContext_MeleeWeapon, EHitSeverity_Any, EMoveSeverity_Any, ERagdollHitPart_Legs, EImpactDirection_Any,     "blunt_melee_weapon_legs_any@ai_ragdoll_behavior_presets.scr");
-    */
 
     // mod player fists
     /*

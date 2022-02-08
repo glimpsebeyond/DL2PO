@@ -18,7 +18,6 @@ Behavior("Float_Away")
 	LinVel(0, 10.0, 11.0, CURVE_CONST, "neck1", "", [0, 1, 0], COORD_WORLD)
 }
 
-/*
 Behavior("Float_Quick")
 {
 	LinVel(0, 1.0, 11.0, CURVE_CONST, "neck1", "", [0, 1, 0], COORD_WORLD)
@@ -38,29 +37,75 @@ Behavior("gb_Test2")
     // AngVel(0, 10.0, 50, CURVE_CONST, "spine3", "", [1, 0, 0], COORD_LOCAL)
 }
 
+// head
 Behavior("gb_StickBlunt_Head_Any")
 {
-	LinVel(0, 1.0, 5.0, CURVE_CONST, "neck1", "", [0, 0, 1], COORD_START)
+	// LinVel(0, 0.1, 10.0, CURVE_CONST, "neck1", "", [0, 0, 1], COORD_START)
+	RandLinImpulse(0, 0.5, 10.0, 40.0, 0.5, CURVE_CONST, "neck1", "", [0, 0, 1], COORD_START)
+    //RandAngImpulse(0, 0.2, -1000, 1000, 0.2, CURVE_CONST, "neck1", "", [1, 0, 0], COORD_LOCAL)
 }
 
+Behavior("gb_StickBlunt_Head_Any_Convulse")
+{
+	RandLinImpulse(0, 0.5, 5.0, 14.0, 0.5, CURVE_CONST, "neck1", "", [0, 0, 1], COORD_START)
+	Stiffness(0.0, 0.7, 0.9, CURVE_CONST)
+    // hold zed up a bit
+	LinVel(0, 0.7, 4.9, CURVE_CONST, "neck1", "", [0, 1, 0], COORD_WORLD)
+
+    // arms out relative to chest
+	RandLinImpulse(0, 0.7, -0.5, 1, 0.05,CURVE_CONST, "l_forearm", "spine3", [0, 0, -1], COORD_ANOTHER_BONE_LOCAL)
+	RandLinImpulse(0, 0.7, -0.5, 1, 0.05,CURVE_CONST, "r_forearm", "spine3", [0, 0, -1], COORD_ANOTHER_BONE_LOCAL)
+
+	// Stiffness(0.4, 1, 1.0, CURVE_LINEAR_DECREASE)
+    RandAngImpulse(1, 2, -10, 10, 0.05, CURVE_CONST, "neck1", "", [1, 1, 0], COORD_LOCAL)
+    RandAngImpulse(1, 2, -10, 10, 0.05, CURVE_CONST, "spine3", "", [1, 1, 0], COORD_LOCAL)
+    RandAngImpulse(1, 2, -10, 10, 0.05, CURVE_CONST, "l_thigh", "", [1, 1, 0], COORD_LOCAL)
+    RandAngImpulse(1, 2, -10, 10, 0.05, CURVE_CONST, "r_thigh", "", [1, 1, 0], COORD_LOCAL)
+    RandAngImpulse(1, 2, -10, 10, 0.05, CURVE_CONST, "l_upperarm", "", [1, 1, 0], COORD_LOCAL)
+    RandAngImpulse(1, 2, -10, 10, 0.05, CURVE_CONST, "r_upperarm", "", [1, 1, 0], COORD_LOCAL)
+}
+
+// torso
 Behavior("gb_StickBlunt_Torso_Any")
 {
-	// LinVel(0, 1.0, 5.0, CURVE_CONST, "spine3", "", [0, 0, 1], COORD_START)
-	LinVel(0, 1.0, 11.0, CURVE_CONST, "neck1", "", [0, 1, 0], COORD_WORLD)
-}
-Behavior("gb_StickBlunt_Torso_Any2")
-{
-	// LinVel(0, 1.0, 100.0, CURVE_CONST, "spine3", "", [0, 0, 1], COORD_START)
-	LinVel(0, 10.0, 11.0, CURVE_CONST, "neck1", "", [0, 1, 0], COORD_WORLD)
+    //RandLinImpulse(fstart, fend, fmin, fmax, fImpulseInterval, scurve, sbone, sotherbone, v3dir, scoord)
+	// LinVel(0, 0.1, 2.0, CURVE_CONST, "spine3", "", [0, 0, 1], COORD_START)
+	RandLinImpulse(0, 0.5, 5.0, 20.0, 0.5, CURVE_CONST, "spine3", "", [0, 0, 1], COORD_START)
+    RandAngImpulse(0, 0.2, -50, 50, 0.05, CURVE_CONST, "spine3", "", [1, 0, 0], COORD_LOCAL)
 }
 
+Behavior("gb_StickBlunt_Torso_Any_TryToGetUp")
+{
+    //RandLinImpulse(fstart, fend, fmin, fmax, fImpulseInterval, scurve, sbone, sotherbone, v3dir, scoord)
+	// LinVel(0, 0.1, 2.0, CURVE_CONST, "spine3", "", [0, 0, 1], COORD_START)
+	RandLinImpulse(0, 0.5, 5.0, 20.0, 0.5, CURVE_CONST, "spine3", "", [0, 0, 1], COORD_START)
+    RandAngImpulse(0, 0.2, -50, 50, 0.05, CURVE_CONST, "spine3", "", [1, 0, 0], COORD_LOCAL)
+
+    // lift up head/spine against gravity
+	RandLinImpulse(0.7, 1.5, 2.0, 4.0, 0.05, CURVE_LINEAR_DECREASE, "head", "", [0, 1, 0], COORD_WORLD)
+	RandLinImpulse(0.7, 1.5, 2.0, 3.0, 0.05, CURVE_LINEAR_DECREASE, "spine3", "", [0, 1, 0], COORD_WORLD)
+
+    // push arms to ground
+	RandLinImpulse(0.7, 1.5, 2.0, 3.0, 0.05, CURVE_LINEAR_DECREASE, "l_forearm", "", [0, -1, 0], COORD_WORLD)
+	RandLinImpulse(0.7, 1.5, 2.0, 3.0, 0.05, CURVE_LINEAR_DECREASE, "r_forearm", "", [0, -1, 0], COORD_WORLD)
+}
+
+// leg
 Behavior("gb_StickBlunt_LegsSweep_Any")
+{
+	RandLinImpulse(0, 0.5, 2.0, 10.0, 0.5, CURVE_CONST, "l_calf", "", [0, 0, 1], COORD_START)
+	RandLinImpulse(0, 0.5, 2.0, 10.0, 0.5, CURVE_CONST, "r_calf", "", [0, 0, 1], COORD_START)
+	RandLinImpulse(0, 0.5, 2.0, 10.0, 0.5, CURVE_CONST, "spine3", "", [0, 0, -1], COORD_START)
+    RandAngImpulse(0, 0.5, -100, 100, 0.5, CURVE_CONST, "pelvis", "", [1, 0, 0], COORD_LOCAL)
+}
+
+Behavior("gb_StickBlunt_LegsSweep_Any2")
 {
 	LinVel(0, 0.3, 5.0, CURVE_CONST, "l_calf", "", [0, 0, 1], COORD_START)
 	LinVel(0, 0.3, 5.0, CURVE_CONST, "r_calf", "", [0, 0, 1], COORD_START)
 	LinVel(0, 0.1, 2.0, CURVE_CONST, "spine3", "", [1, 0, 0], COORD_LOCAL)
+    RandAngImpulse(0, 0.5, -100, 100, 0.5, CURVE_CONST, "pelvis", "", [1, 0, 0], COORD_LOCAL)
 }
-*/
 
 /*
 Behavior("gb_Test3")
